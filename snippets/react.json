@@ -1,0 +1,48 @@
+{
+  "arrowFunctionComponent": {
+    "prefix": "rafce",
+    "body": [
+      "import React from 'react'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "desciption": "function component"
+  },
+  "arrowTSFunctionComponent": {
+    "prefix": "tsrafce",
+    "body": [
+      "import React from 'react'",
+      "",
+      "interface Props {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = ({}: Props) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "desciption": "typescript function component"
+  },
+  "useState": {
+    "prefix": "stateSnippet",
+    "body": [
+      "const [${1:first}, set${1/(.*)/${1:/capitalize}/}] = React.useState(${2:second})"
+    ],
+    "desciption": "React use state"
+  },
+  "useRef": {
+    "prefix": "refSnippet",
+    "body": [
+      "const ${1:first} = React.useRef(${2:second})"
+    ],
+    "desciption": "React useRef"
+  }
+}
