@@ -3,6 +3,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		event = "User FileOpened",
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				-- A list of parser names, or "all" (the five listed parsers should always be installed)
@@ -30,6 +31,7 @@ return {
 	-- lsp
 	{
 		"neovim/nvim-lspconfig",
+		lazy = true,
 		opts = {
 			--options for vim.diagnostic.config()
 			diagnostics = {
@@ -63,7 +65,6 @@ return {
 		config = function()
 			local lspconfig = require("lspconfig")
 			lspconfig.tsserver.setup({})
-			lspconfig.tailwindcss.setup({})
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -101,6 +102,7 @@ return {
 	},
 	{
 		"L3MON4D3/LuaSnip",
+		lazy = true,
 		-- follow latest release.
 		version = "<CurrentMajor>.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 		-- install jsregexp (optional!).
@@ -114,8 +116,8 @@ return {
 	-- https://www.lazyvim.org/plugins/coding#nvim-cmp
 	{
 		"hrsh7th/nvim-cmp",
+		event = { "InsertEnter", "CmdlineEnter" },
 		version = false, -- last release is way too old
-		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
@@ -167,11 +169,21 @@ return {
 	},
 	{
 		"hrsh7th/cmp-nvim-lsp",
+		lazy = true,
 	},
 
-	"hrsh7th/cmp-path",
-	"saadparwaiz1/cmp_luasnip",
-	"hrsh7th/cmp-buffer",
+	{
+		"hrsh7th/cmp-path",
+		lazy = true,
+	},
+	{
+		"saadparwaiz1/cmp_luasnip",
+		lazy = true,
+	},
+	{
+		"hrsh7th/cmp-buffer",
+		lazy = true,
+	},
 	{
 		"echasnovski/mini.pairs",
 		event = "VeryLazy",
@@ -182,7 +194,7 @@ return {
 	{
 		{
 			"akinsho/toggleterm.nvim",
-			event = "VeryLazy",
+			lazy = true,
 			version = "*",
 			opts = { --[[ things you want to change go here]]
 			},
@@ -198,6 +210,7 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
+		event = "User FileOpened",
 		config = function()
 			require("Comment").setup({
 				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
@@ -206,9 +219,11 @@ return {
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
+		lazy = true,
 	},
 	{
 		"nvim-lua/plenary.nvim",
+		lazy = true,
 	},
 	-- format
 	{
@@ -279,6 +294,7 @@ return {
 	},
 	{
 		"SmiteshP/nvim-navic",
+		event = "User FileOpened",
 		config = function()
 			local navic = require("nvim-navic")
 			local on_attach = function(client, bufnr)
@@ -297,9 +313,13 @@ return {
 		dependencies = {
 			"tpope/vim-repeat",
 		},
+		event = "User FileOpened",
 		config = function()
 			require("leap").add_default_mappings()
 		end,
 	},
-	"windwp/nvim-ts-autotag",
+	{
+		"windwp/nvim-ts-autotag",
+		lazy = true,
+	},
 }
